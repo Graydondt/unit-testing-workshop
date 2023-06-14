@@ -8,27 +8,19 @@ describe('AppComponent', () => {
   });
 
   beforeEach(() => {
-    spectator = createComponent();
+    spectator = createComponent(); // We are creating a instance of Appcomponent using spectator
   });
 
   it('should create the app', () => {
-    const fixture = spectator.fixture;
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+    expect(spectator.component).toBeTruthy(); // Usual standard initial test to see if the component created succesfully
   });
 
   it(`should have as title 'testing-101'`, () => {
-    const fixture = spectator.fixture;
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('testing-101');
+    expect(spectator.component.title).toEqual('testing-101'); // Accessing the AppComponent instance and its properties via spectator
   });
 
   it('should render title', () => {
-    const fixture = spectator.fixture;
-    spectator.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain(
-      'testing-101 app is running!'
-    );
+    const content = spectator.element.querySelector('.content span')?.textContent; // Selecting a html element via its class name
+    expect(content).toContain('testing-101 app is running!');
   });
 });
